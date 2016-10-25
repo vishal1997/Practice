@@ -78,7 +78,7 @@ struct queue delete(struct queue Queue)
         Queue.rear=Queue.front=-1;
         return Queue;
     }
-    Queue.rear--;
+    Queue.front++;
     return Queue;
 }
 
