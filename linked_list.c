@@ -128,13 +128,7 @@ struct Node *insert_at_position(struct Node *head, int position, int data)
 	struct Node *new_node=(struct Node *)malloc(sizeof(struct Node));
 	new_node->data=data;
 	new_node->next=NULL;
-	int count=0;
-	if(position==1)
-	{
-		new_node->next=ptr;
-		head=new_node;
-		return head;
-	}
+	int count=1;
 	while(ptr!=NULL && count<position) {
 		prev=ptr;
 		ptr=ptr->next;
@@ -153,6 +147,11 @@ struct Node *insert_at_position(struct Node *head, int position, int data)
 struct Node *del_at_beg(struct Node *head)
 {
 	struct Node *ptr=head;
+	if(head==NULL)
+    {
+        printf("List is empty");
+        return head;
+    }
 	head=ptr->next;
 	free(ptr);
 	return head;
@@ -160,18 +159,20 @@ struct Node *del_at_beg(struct Node *head)
 
 struct Node *del_at_end(struct Node *head)
 {
-	struct Node *ptr=head;
+	struct Node *ptr=head, *temp=NULL;
 	while(ptr->next!=NULL)
 	{
+	    temp=ptr;
 		ptr=ptr->next;
 	}
+	temp->next=NULL;
 	free(ptr);
 	return head;
 }
 
 struct Node *del_at_position(struct Node *head, int position)
 {
-	int count=0;
+	int count=1;
 	struct Node *ptr=head, *prev=NULL;
 	if(position==1)
 	{
@@ -207,11 +208,10 @@ void traverse_forward(struct Node *head)
 
 struct Node *traverse_backward(struct Node *head)
 {
-	struct Node *ptr=head,*cur=NULL;
 	if(head==NULL)
         return head;
-	cur=traverse_backward(ptr->next);
-	printf("%d",cur->data);
+	traverse_backward(head->next);
+	printf("%d",head->data);
 	return head;
 }
 
@@ -219,16 +219,26 @@ void search(struct Node *head, int data)
 {
 	struct Node *ptr=head;
 	int position=0;
-	while(ptr!=NULL && ptr->data!=data)
+	int flag=0;
+	while(ptr!=NULL)
 	{
-		position++;
-		ptr=ptr->next;
+	    if(ptr->data==data)
+        {
+            flag=1;
+            break;
+        }
+        else
+        {
+            position++;
+            ptr=ptr->next;
+        }
 	}
-	if(ptr->data==data)
+
+	if(flag)
 	{
 		printf("\nData found at %d",position);
 	}
-	else if(ptr==NULL)
+	else
 		printf("\nData Not found");
     return;
 }
