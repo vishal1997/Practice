@@ -9,21 +9,21 @@ float closest(struct Point P[], int size);
 float closestUtil(struct Point Px[], struct Point Py[],int size);
 float closestStrip(struct Point strip[],int size, float d) ;
 int compareX(const void* x1, const void* x2);
-//void inputPoint(struct Point P[], int size);
+void inputPoint(struct Point P[], int size);
 int compareY(const void* y1, const void* y2);
 float min(float x, float y);
 float dist(struct Point P1, struct Point P2);
 
 float bruteForce(struct Point P[], int size);
 int
-main() {/*
+main() {
     int size;
     printf("\nEnter the no. of struct Points\n");
     scanf("%d",&size);
-    struct Point P[size];*/
-    struct Point P[] = {{2, 3}, {12, 30}, {40, 50}, {5, 1}, {12, 10}, {3, 4}};
-    //printf("\nEnter the struct Points separated by space X Y :");
-    //inputPoint(P, size);
+    struct Point P[size];
+    //struct Point P[] = {{2, 3}, {12, 30}, {40, 50}, {5, 1}, {12, 10}, {3, 4}};
+    printf("\nEnter the struct Points separated by space X Y :");
+    inputPoint(P, size);
     printf("\nSmallest Distance=%f",closest(P,6));
 }
 
@@ -115,13 +115,13 @@ float closest(struct Point P[], int size) {
     qsort(Py, size,sizeof(struct Point),compareY);
     return closestUtil(Px,Py,size);
 }
-/*
+
 void inputPoint(struct Point P[], int size) {
     int i;
     for(i=0;i<size;i++) {
         printf("\nEnter %d Point",i+1);
-        scanf("%f",&P[i].x);
-        scanf("%f",&P[i].y);
+        scanf("%d",&P[i].x);
+        scanf("%d",&P[i].y);
     }
 }
-*/
+
