@@ -24,7 +24,7 @@ main() {
     //struct Point P[] = {{2, 3}, {12, 30}, {40, 50}, {5, 1}, {12, 10}, {3, 4}};
     printf("\nEnter the struct Points separated by space X Y :");
     inputPoint(P, size);
-    printf("\nSmallest Distance=%f",closest(P,6));
+    printf("\nSmallest Distance=%f",closest(P,size));
 }
 
 float closestUtil(struct Point Px[], struct Point Py[],int size) {
