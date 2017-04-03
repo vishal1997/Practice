@@ -22,7 +22,7 @@ main() {
     scanf("%d",&size);
     struct Point P[size];
     //struct Point P[] = {{2, 3}, {12, 30}, {40, 50}, {5, 1}, {12, 10}, {3, 4}};
-    printf("\nEnter the struct Points separated by space X Y :");
+    printf("\nEnter the Points separated by space X Y :");
     inputPoint(P, size);
     printf("\nSmallest Distance=%f",closest(P,size));
 }
