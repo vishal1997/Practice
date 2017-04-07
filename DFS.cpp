@@ -26,7 +26,9 @@ void Graph::DFS(int src) {
     bool *visited =new bool[vertex];
     for(int i=0;i<vertex;i++)
         visited[i]=false;
-    dfsUtil(src,visited);
+    for(int i=0;i<vertex;i++)
+        if(!visited[i])
+            dfsUtil(src,visited);
 }
 
 void Graph::dfsUtil(int src, bool visited[]) {
