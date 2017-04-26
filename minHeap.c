@@ -29,16 +29,16 @@ void heapSort(int arr[], int sortArray[], int len) {
 void heapify(int arr[], int len, int i) {
     if(len<=1)
         return ;
-    int largest=i,
+    int smallest=i,
     left=2*i + 1,
     right=2*i +2;
-    if((left<len) && arr[largest]>arr[left])
-        largest=left;
-    if(right<len && arr[largest]>arr[right])
-        largest=right;
-    if(largest!=i) {
-        swap(&arr[i], &arr[largest]);
-        heapify(arr,len,largest);
+    if((left<len) && arr[smallest]>arr[left])
+        smallest=left;
+    if(right<len && arr[smallest]>arr[right])
+        smallest=right;
+    if(smallest!=i) {
+        swap(&arr[i], &arr[smallest]);
+        heapify(arr,len,smallest);
     }
 }
 
