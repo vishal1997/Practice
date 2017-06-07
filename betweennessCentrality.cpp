@@ -19,6 +19,7 @@ Graph::Graph(int vertex) {
 
 void Graph::addEdge(int src, int dest) {
     adj[src].push_back(dest);                   //create adjacent list
+    adj[dest].push_back(src);
 }
 
 void Graph::centrality() {
@@ -47,12 +48,13 @@ void Graph::centrality() {
                     dist[*w]=dist[v]+1;
                 }
                 //if the distance of successor is equal to distance of predecessor +1 than
-                //No. of shortest path where a vertex lies= sum of the no. of shortest path(current) + No. of shortest path of its predecessor
+                //No. of shortest path where a vertex lies equals the sum of the no. of shortest path(current) and No. of shortest path of its predecessor
                 //append the predecessor to the list of predecessor for the vertex
                 if(dist[*w]==dist[v]+1) {
                     sigma[*w]=sigma[*w]+sigma[v];
                     P[*w].push_back(v);
                 }
+                //cout<<endl<<adj[v].size();
             }
         }
         vector <float> delta(vertex,0.0);
@@ -68,7 +70,7 @@ void Graph::centrality() {
         }
     }
     for(int i=0;i<vertex;i++)
-        cout<<endl<<i<<"\t"<<bCentrality[i];
+        cout<<endl<<i<<"\t"<<bCentrality[i]/2;
 }
 
 int main()
@@ -83,5 +85,22 @@ int main()
     g.addEdge(4,5);
     g.addEdge(5,6);
     g.centrality();
+    Graph g2(9);
+    cout<<"\nGraph 2";
+    g2.addEdge(0, 1);
+    g2.addEdge(0, 7);
+    g2.addEdge(1, 2);
+    g2.addEdge(1, 7);
+    g2.addEdge(2, 3);
+    g2.addEdge(2, 8);
+    g2.addEdge(2, 5);
+    g2.addEdge(3, 4);
+    g2.addEdge(3, 5);
+    g2.addEdge(4, 5);
+    g2.addEdge(5, 6);
+    g2.addEdge(6, 7);
+    g2.addEdge(6, 8);
+    g2.addEdge(7, 8);
+    g2.centrality();
     return 0;
 }
