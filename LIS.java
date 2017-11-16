@@ -50,20 +50,23 @@ class LIS {
 			} else if(arr[i] > temp[templen-1]) {
 				temp[templen++]=arr[i];
 			} else {
-				temp[ceilIndex(0,len,arr[i])]=arr[i];
+				temp[ceilIndex(temp,-1,len-1,arr[i])]=arr[i];
 			}
 		}
 		return templen;
 	}
 	
-	public int ceilIndex(int low, int high, int key) {
-
-		int mid=low + (high-low)/2;
-		if(arr[mid] ==key) {
-			return mid;
-		} else if(arr[mid]>key) {
-			return ceilIndex(low, mid, key);
+	public int ceilIndex(int A[], int l, int r, int key) {
+	
+		while (r - l > 1)
+		{
+		    int m = l + (r - l)/2;
+		    if (A[m]>=key)
+		        r = m;
+		    else
+		        l = m;
 		}
-		return ceilIndex(mid, high ,key);
+	 
+		return r;
 	}
 }
